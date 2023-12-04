@@ -1,45 +1,81 @@
-import tkinter as tk
-from tkinter import ttk
+
+import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QTextEdit, QProgressBar
+from PyQt5.QtCore import QTimer
+from PyQt5.QtGui import QPalette, QColor
 import pyautogui
-import time
 
+class TextTyper(QWidget):
+    def __init__(self):
+        super().__init__()
 
-# interval = <time taken between registering the keys>
-def type_text(text):
-    pyautogui.typewrite(text, interval=0.02)
+        self.initUI()
 
-def get_input_and_type():
-    text = input_text.get("1.0", "end-1c")  # Get the text from the Text widget
-    if text:
-        time.sleep(5)  # Pause for 5 seconds
-        type_text(text)
+    def initUI(self):
+        self.setWindowTitle('Text Typer')
 
-root = tk.Tk()
-root.title("Text Typer")
-root.geometry("400x250")  # Adjust the window size for vertical orientation
-root.configure(bg="#4B0082")  # Set the background color to a dark purple (#4B0082)
+        self.textEdit = QTextEdit()
+        self.button = QPushButton("Type Text")
+        self.button.clicked.connect(self.start_timer)
 
-# Create a canvas with a dark purple background
-canvas = tk.Canvas(root, background="#4B0082")
-canvas.pack(fill="both", expand=True)
+        self.progressBar = QProgressBar()  # Progress bar to show the countdown
+        self.progressBar.setMaximum(100)  # Countdown time in seconds
+        self.progressBar.setTextVisible(False)  # Don't show the numeric %
 
-# Create a top frame for text input
-top_frame = ttk.Frame(canvas, style='Background.TFrame')  # Use a custom style for background color
-top_frame.pack(fill="both", expand=True)
+        # Change the color from green to grey
+        palette = self.progressBar.palette()
+        palette.setColor(QPalette.Highlight, QColor('grey'))
+        self.progressBar.setPalette(palette)
 
-# Define a custom style for background color
-style = ttk.Style()
-style.configure('Background.TFrame', background='#4B0082')
+        vbox = QVBoxLayout()
+        vbox.addWidget(self.textEdit)
+        vbox.addWidget(self.button)
+        vbox.addWidget(self.progressBar)
 
-# Top side: Text input
-input_label = ttk.Label(top_frame, text="Enter text:", background="#4B0082", foreground="white")
-input_label.pack()
+        self.setLayout(vbox)
 
-# Use a Text widget for input
-input_text = tk.Text(top_frame, width=40, height=10)  # Adjust width and height as needed
-input_text.pack(pady=10)  # Add some vertical padding
+    def type_text(self):
+        text = self.textEdit.toPlainText()
+        if text:
+            pyautogui.typewrite(text, interval=0.01)
 
-type_button = ttk.Button(top_frame, text="Type Text", command=get_input_and_type)
-type_button.pack()
+    def start_timer(self):
+        self.countdown = 100  # Countdown time in seconds
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.update_timer)
+        self.timer.start(50)  # Timer ticks every 0.05 second
 
-root.mainloop()
+    def update_timer(self):
+        self.progressBar.setValue(self.countdown)
+        self.countdown -= 1
+        if self.countdown < 0:
+            self.timer.stop()
+            self.type_text()
+
+def main():
+    app = QApplication(sys.argv)
+    app.setStyle('Fusion')  # Set the application style to 'Fusion'
+
+    # Apply dark theme
+    palette = QPalette()
+    palette.setColor(QPalette.Window, QColor(53, 53, 53))
+    palette.setColor(QPalette.WindowText, QColor(255, 255, 255))
+    palette.setColor(QPalette.Base, QColor(25, 25, 25))
+    palette.setColor(QPalette.AlternateBase, QColor(53, 53, 53))
+    palette.setColor(QPalette.ToolTipBase, QColor(255, 255, 255))
+    palette.setColor(QPalette.ToolTipText, QColor(255, 255, 255))
+    palette.setColor(QPalette.Text, QColor(255, 255, 255))
+    palette.setColor(QPalette.Button, QColor(53, 53, 53))
+    palette.setColor(QPalette.ButtonText, QColor(255, 255, 255))
+    palette.setColor(QPalette.BrightText, QColor(255, 0, 0))
+    palette.setColor(QPalette.Highlight, QColor(142, 45, 197).lighter())
+    palette.setColor(QPalette.HighlightedText, QColor(0, 0, 0))
+    app.setPalette(palette)
+
+    ex = TextTyper()
+    ex.show()
+
+    sys.exit(app.exec_())
+
+if __name__ == '__main__':
+    main()
