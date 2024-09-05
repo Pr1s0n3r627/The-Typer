@@ -38,7 +38,7 @@ class TextTyper(QWidget):
     def type_text(self):
         text = self.textEdit.toPlainText()
         if text:
-            pyautogui.typewrite(text, interval=0.01)
+            pyautogui.typewrite(text, interval=0.0001)
 
     def start_timer(self):
         self.countdown = 100  # Countdown time in seconds
