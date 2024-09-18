@@ -9,8 +9,9 @@ Welcome to **The Typer**, an autotyper designed to save you time on repetitive t
 3. **Clone the repo** by running:  
    ```bash
    git clone https://github.com/Pr1s0n3r627/The-Typer
-4. Navigate to the cloned folder:
 
+4. Navigate to the cloned folder:
+```bash
 cd The-Typer
 
 
@@ -21,4 +22,4 @@ pip install pyautogui pyqt5
 
 6. To start the autotyper, simply run:
 
-python3 texter.py```
+python3 texter.py
