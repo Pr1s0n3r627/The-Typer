@@ -31,7 +31,7 @@ Welcome to **The Typer**, your go-to tool for cutting down on repetitive typing.
 Or, if you’re feeling lazy, just hit that:
 ```bash
 ./script.sh
-
+```
 
 ---
 
