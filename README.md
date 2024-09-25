@@ -1,6 +1,6 @@
 ---
 
-🖋️ The Typer - Auto-Typing Simplified
+#🖋️ The Typer - Auto-Typing Simplified
 
 Welcome to The Typer, your go-to tool for cutting down on repetitive typing. It’s built to make things easy, no cap. Follow these steps to get everything running in no time.
 
