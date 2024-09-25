@@ -60,6 +60,38 @@ If you encounter issues while running the script on Linux-based systems, follow 
 
 3. **Proceed with the steps above to run the setup script**.
 
+### Windows
+
+If you encounter issues while running the script on Windows systems, follow these steps:
+
+1. **Install Python**:
+    - Download and install Python from [python.org](https://www.python.org/downloads/).
+    - Ensure Python is added to your PATH during installation.
+
+2. **Install Git**:
+    - Download and install Git from [git-scm.com](https://git-scm.com/).
+
+3. **Run the setup script in Git Bash or Command Prompt**:
+    ```bash
+    ./script.sh
+    ```
+
+### macOS
+
+If you encounter issues while running the script on macOS, follow these steps:
+
+1. **Install Homebrew (if not installed)**:
+    ```bash
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    ```
+
+2. **Install Python and Git via Homebrew**:
+    ```bash
+    brew install python git
+    ```
+
+3. **Proceed with the steps above to run the setup script**.
+
 ### Common Issues
 
 - **Permission Denied**: Ensure the script has execute permissions:
@@ -69,7 +101,7 @@ If you encounter issues while running the script on Linux-based systems, follow 
 
 - **Missing Packages**: Make sure all necessary packages are installed using your system's package manager.
 
-If you continue to experience issues, please check the error messages for specific guidance or consult the documentation for your Linux distribution.
+If you continue to experience issues, please check the error messages for specific guidance or consult the documentation for your system.
 
 ## 🏁 Running the Auto-Typer
 
