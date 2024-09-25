@@ -14,10 +14,18 @@ Welcome to **The Typer**, an autotyper designed to save you time on repetitive t
     ```bash
     cd The-Typer
     ```
-5. **Run the setup script**:
+5. **Install the required dependencies**:
     ```bash
-    ./script.sh
+    pip install pyautogui pyqt5
     ```
+6. **To the run the python script**:
+    ```bash
+    python texter.py
+    ```
+
+**OR JUST RUN THE SCRIPT.SH**
+
+ 
 
 ## 🛠️ Troubleshooting for Linux-based Systems
 
